@@ -75,10 +75,17 @@ then
 fi
 
 if [ -z "$INPUT_FILE" ]; then
-    printHelp
+    echo "No input file provided"
+    exit 1
 fi
 
-if $TARGET_MAC
+if [ "$TARGET_MAC" = false ] && [ "$TARGET_IPHONE" = false ] && [ "$TARGET_ANDROID" = false ] && [ "$TARGET_WINDOWS" = false ]
+then
+    echo "No platforms provided"
+    exit 1
+fi
+
+if [ "$TARGET_MAC" = true ]
 then
     if [ ! -d "mac" ]; then
         mkdir "mac"
@@ -100,7 +107,7 @@ then
     convert "$INPUT_FILE" -resize 1024x1024 -filter "$FILTER" mac/Icon-512@2x.png
 fi
 
-if $TARGET_IPHONE
+if [ "$TARGET_IPHONE" = true ]
 then
     if [ ! -d "iphone" ]; then
         mkdir "iphone"
@@ -132,7 +139,7 @@ then
     convert "$INPUT_FILE" -resize 167x167 -filter "$FILTER" iphone/Icon-83.5@2x.png
 fi
 
-if $TARGET_ANDROID
+if [ "$TARGET_ANDROID" = true ]
 then
     if [ ! -d "android" ]; then
         mkdir "android"
@@ -157,7 +164,7 @@ then
     convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" android/icon-512.png
 fi
 
-if $TARGET_WINDOWS
+if [ "$TARGET_WINDOWS" = true ]
 then
     if [ ! -d "windows" ]; then
         mkdir "windows"
