@@ -2,7 +2,7 @@ TARGET_MAC=true
 TARGET_IPHONE=true
 TARGET_APPLETV=false
 TARGET_ANDROID=true
-TARGET_WINDOWS=false
+TARGET_WINDOWS=true
 
 FILTER=Cubic
 INPUT_FILE=""
@@ -15,7 +15,7 @@ function printHelp {
     echo "OPTIONS:"
     echo "	-f <filter>			Build configuration: release, debug"
     echo "	-h				Display available options"
-    echo "	-p <platforms>			Target platforms: mac, iphone, appletv, windows, android"
+    echo "	-p <platforms>			Target platforms: mac, iphone, appletv, android, windows"
     exit
 }
 
@@ -160,4 +160,18 @@ then
     convert "$INPUT_FILE" -resize 144x144 -filter "$FILTER" android/icon-144.png
     convert "$INPUT_FILE" -resize 192x192 -filter "$FILTER" android/icon-182.png
     convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" android/icon-512.png
+fi
+
+if $TARGET_WINDOWS
+then
+    if [ ! -d "windows" ]; then
+        mkdir "windows"
+    fi
+    
+    convert "$INPUT_FILE" -resize 16x16 -filter "$FILTER" windows/icon-16.png
+    convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" windows/icon-32.png
+    convert "$INPUT_FILE" -resize 64x64 -filter "$FILTER" windows/icon-64.png
+    convert "$INPUT_FILE" -resize 128x128 -filter "$FILTER" windows/icon-128.png
+    convert "$INPUT_FILE" -resize 256x256 -filter "$FILTER" windows/icon-256.png
+    convert windows/icon-16.png windows/icon-32.png windows/icon-64.png windows/icon-128.png windows/icon-256.png windows/icon.ico
 fi
