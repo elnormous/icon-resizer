@@ -1,7 +1,7 @@
 TARGET_MAC=true
 TARGET_IPHONE=true
 TARGET_APPLETV=false
-TARGET_ANDROID=false
+TARGET_ANDROID=true
 TARGET_WINDOWS=false
 
 FILTER=Cubic
@@ -85,7 +85,10 @@ fi
 
 if $TARGET_MAC
 then
-    mkdir mac
+    if [ ! -d "mac" ]; then
+        mkdir "mac"
+    fi
+    
     convert "$INPUT_FILE" -resize 16x16 -filter "$FILTER" mac/Icon-16.png
     convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" mac/Icon-16@2x.png
 
@@ -104,7 +107,10 @@ fi
 
 if $TARGET_IPHONE
 then
-    mkdir iphone
+    if [ ! -d "iphone" ]; then
+        mkdir "iphone"
+    fi
+    
     convert "$INPUT_FILE" -resize 29x29 -filter "$FILTER" iphone/Icon-29.png
     convert "$INPUT_FILE" -resize 58x58 -filter "$FILTER" iphone/Icon-29@2x.png
     convert "$INPUT_FILE" -resize 87x87 -filter "$FILTER" iphone/Icon-29@3x.png
@@ -129,4 +135,29 @@ then
     convert "$INPUT_FILE" -resize 152x152 -filter "$FILTER" iphone/Icon-76@2x.png
 
     convert "$INPUT_FILE" -resize 167x167 -filter "$FILTER" iphone/Icon-83.5@2x.png
+fi
+
+if $TARGET_ANDROID
+then
+    if [ ! -d "android" ]; then
+        mkdir "android"
+    fi
+    
+    convert "$INPUT_FILE" -resize 16x16 -filter "$FILTER" android/icon-16.png
+    convert "$INPUT_FILE" -resize 24x24 -filter "$FILTER" android/icon-24.png
+    convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" android/icon-32.png
+    convert "$INPUT_FILE" -resize 48x48 -filter "$FILTER" android/icon-48.png
+    convert "$INPUT_FILE" -resize 64x64 -filter "$FILTER" android/icon-64.png
+    
+    convert "$INPUT_FILE" -resize 36x36 -filter "$FILTER" android/icon-36.png
+    
+    convert "$INPUT_FILE" -resize 72x72 -filter "$FILTER" android/icon-72.png
+    convert "$INPUT_FILE" -resize 96x96 -filter "$FILTER" android/icon-96.png
+    
+    convert "$INPUT_FILE" -resize 48x48 -filter "$FILTER" android/icon-48.png
+    convert "$INPUT_FILE" -resize 72x72 -filter "$FILTER" android/icon-72.png
+    convert "$INPUT_FILE" -resize 96x96 -filter "$FILTER" android/icon-96.png
+    convert "$INPUT_FILE" -resize 144x144 -filter "$FILTER" android/icon-144.png
+    convert "$INPUT_FILE" -resize 192x192 -filter "$FILTER" android/icon-182.png
+    convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" android/icon-512.png
 fi
