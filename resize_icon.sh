@@ -117,7 +117,7 @@ then
     convert "$INPUT_FILE" -resize 58x58 -filter "$FILTER" iphone/Icon-29@2x.png
     convert "$INPUT_FILE" -resize 87x87 -filter "$FILTER" iphone/Icon-29@3x.png
 
-    convert "$INPUT_FILE" -resize 80x80 -filter "$FILTER" iphone/Icon-40.png
+    convert "$INPUT_FILE" -resize 40x40 -filter "$FILTER" iphone/Icon-40.png
     convert "$INPUT_FILE" -resize 80x80 -filter "$FILTER" iphone/Icon-40@2x.png
     convert "$INPUT_FILE" -resize 120x120 -filter "$FILTER" iphone/Icon-40@3x.png
 
