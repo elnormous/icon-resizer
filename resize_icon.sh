@@ -1,6 +1,5 @@
 TARGET_MAC=true
 TARGET_IPHONE=true
-TARGET_APPLETV=false
 TARGET_ANDROID=true
 TARGET_WINDOWS=true
 
@@ -13,9 +12,9 @@ function printHelp {
     echo "USAGE: $0 <icon file> [options]"
     echo ""
     echo "OPTIONS:"
-    echo "	-f <filter>			Build configuration: release, debug"
+    echo "	-f <filter>			Filter to use for resizing (default: Cubic)"
     echo "	-h				Display available options"
-    echo "	-p <platforms>			Target platforms: mac, iphone, appletv, android, windows"
+    echo "	-p <platforms>			Target platforms: mac, iphone, android, windows"
     exit
 }
 
@@ -31,7 +30,6 @@ then
                 CURRENT_ARG=1
                 TARGET_MAC=false
                 TARGET_IPHONE=false
-                TARGET_APPLETV=false
                 TARGET_ANDROID=false
                 TARGET_WINDOWS=false
                 ;;
@@ -50,9 +48,6 @@ then
                                 ;;
                             "iphone")
                                 TARGET_IPHONE=true
-                                ;;
-                            "appletv")
-                                TARGET_APPLETV=true
                                 ;;
                             "android")
                                 TARGET_ANDROID=true
