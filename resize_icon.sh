@@ -160,7 +160,7 @@ then
     convert "$INPUT_FILE" -resize 72x72 -filter "$FILTER" android/icon-72.png
     convert "$INPUT_FILE" -resize 96x96 -filter "$FILTER" android/icon-96.png
     convert "$INPUT_FILE" -resize 144x144 -filter "$FILTER" android/icon-144.png
-    convert "$INPUT_FILE" -resize 192x192 -filter "$FILTER" android/icon-182.png
+    convert "$INPUT_FILE" -resize 192x192 -filter "$FILTER" android/icon-192.png
     convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" android/icon-512.png
 fi
 
