@@ -1,4 +1,4 @@
-TARGET_MAC=true
+TARGET_MACOS=true
 TARGET_IOS=true
 TARGET_ANDROID=true
 TARGET_WINDOWS=true
@@ -14,7 +14,7 @@ function printHelp {
     echo "OPTIONS:"
     echo "	-f <filter>			Filter to use for resizing (default: Cubic)"
     echo "	-h				Display available options"
-    echo "	-p <platforms>			Target platforms: mac, ios, android, windows"
+    echo "	-p <platforms>			Target platforms: macos, ios, android, windows, all"
     exit
 }
 
@@ -34,7 +34,7 @@ then
         case $arg in
             "-p")
                 CURRENT_ARG=1
-                TARGET_MAC=false
+                TARGET_MACOS=false
                 TARGET_IOS=false
                 TARGET_ANDROID=false
                 TARGET_WINDOWS=false
@@ -49,8 +49,8 @@ then
                 case $CURRENT_ARG in
                     1)
                         case $arg in
-                            "mac")
-                                TARGET_MAC=true
+                            "macos")
+                                TARGET_MACOS=true
                                 ;;
                             "ios")
                                 TARGET_IOS=true
@@ -59,6 +59,12 @@ then
                                 TARGET_ANDROID=true
                                 ;;
                             "windows")
+                                TARGET_WINDOWS=true
+                                ;;
+                            "all")
+                                TARGET_MACOS=true
+                                TARGET_IOS=true
+                                TARGET_ANDROID=true
                                 TARGET_WINDOWS=true
                                 ;;
                             *)
@@ -85,32 +91,32 @@ if [ -z "$INPUT_FILE" ]; then
     exit 1
 fi
 
-if [ "$TARGET_MAC" = false ] && [ "$TARGET_IOS" = false ] && [ "$TARGET_ANDROID" = false ] && [ "$TARGET_WINDOWS" = false ]
+if [ "$TARGET_MACOS" = false ] && [ "$TARGET_IOS" = false ] && [ "$TARGET_ANDROID" = false ] && [ "$TARGET_WINDOWS" = false ]
 then
     echo "No platforms provided"
     exit 1
 fi
 
-if [ "$TARGET_MAC" = true ]
+if [ "$TARGET_MACOS" = true ]
 then
-    if [ ! -d "mac" ]; then
-        mkdir "mac"
+    if [ ! -d "macos" ]; then
+        mkdir "macos"
     fi
     
-    convert "$INPUT_FILE" -resize 16x16 -filter "$FILTER" mac/Icon-16@1x.png
-    convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" mac/Icon-16@2x.png
+    convert "$INPUT_FILE" -resize 16x16 -filter "$FILTER" macos/Icon-16@1x.png
+    convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" macos/Icon-16@2x.png
 
-    convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" mac/Icon-32@1x.png
-    convert "$INPUT_FILE" -resize 64x64 -filter "$FILTER" mac/Icon-32@2x.png
+    convert "$INPUT_FILE" -resize 32x32 -filter "$FILTER" macos/Icon-32@1x.png
+    convert "$INPUT_FILE" -resize 64x64 -filter "$FILTER" macos/Icon-32@2x.png
 
-    convert "$INPUT_FILE" -resize 128x128 -filter "$FILTER" mac/Icon-128@1x.png
-    convert "$INPUT_FILE" -resize 256x256 -filter "$FILTER" mac/Icon-128@2x.png
+    convert "$INPUT_FILE" -resize 128x128 -filter "$FILTER" macos/Icon-128@1x.png
+    convert "$INPUT_FILE" -resize 256x256 -filter "$FILTER" macos/Icon-128@2x.png
 
-    convert "$INPUT_FILE" -resize 256x256 -filter "$FILTER" mac/Icon-256@1x.png
-    convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" mac/Icon-256@2x.png
+    convert "$INPUT_FILE" -resize 256x256 -filter "$FILTER" macos/Icon-256@1x.png
+    convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" macos/Icon-256@2x.png
 
-    convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" mac/Icon-512@1x.png
-    convert "$INPUT_FILE" -resize 1024x1024 -filter "$FILTER" mac/Icon-512@2x.png
+    convert "$INPUT_FILE" -resize 512x512 -filter "$FILTER" macos/Icon-512@1x.png
+    convert "$INPUT_FILE" -resize 1024x1024 -filter "$FILTER" macos/Icon-512@2x.png
 fi
 
 if [ "$TARGET_IOS" = true ]
