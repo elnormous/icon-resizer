@@ -12,6 +12,7 @@ function printHelp {
     echo "USAGE: $0 <icon file> [options]"
     echo ""
     echo "OPTIONS:"
+    echo "	-i <file>			Path to input image"
     echo "	-f <filter>			Filter to use for resizing (default: Cubic)"
     echo "	-h				Display available options"
     echo "	-p <platforms>			Target platforms: macos, ios, android, windows, all"
@@ -24,23 +25,25 @@ then
     exit
 fi
 
-if [ -n "$1" ]
+if [ -z "$1" ]
 then
-    CURRENT_ARG=0
-    INPUT_FILE="$1"
-
-    for arg in "${@:2}"
+    printHelp
+else
+    for arg in "${@:1}"
     do
         case $arg in
-            "-p")
+            "-i")
                 CURRENT_ARG=1
+                ;;
+            "-p")
+                CURRENT_ARG=2
                 TARGET_MACOS=false
                 TARGET_IOS=false
                 TARGET_ANDROID=false
                 TARGET_WINDOWS=false
                 ;;
             "-f")
-                CURRENT_ARG=2
+                CURRENT_ARG=3
                 ;;
             "--help"|"-h")
                 printHelp
@@ -48,6 +51,10 @@ then
             *)
                 case $CURRENT_ARG in
                     1)
+                        INPUT_FILE=$arg
+                        CURRENT_ARG=0
+                        ;;
+                    2)
                         case $arg in
                             "macos")
                                 TARGET_MACOS=true
@@ -73,8 +80,9 @@ then
                                 ;;
                             esac
                         ;;
-                    2)
+                    3)
                         FILTER=$arg
+                        CURRENT_ARG=0
                         ;;
                     *)
                         echo "Invalid argument \"$arg\""

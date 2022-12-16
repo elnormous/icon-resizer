@@ -16,6 +16,7 @@ apt-get install imagemagick
 ```
 
 ## Options
+* **-i** - Path to input image
 * **-f** – Filter to use for resizing (default: Cubic)
 * **-h** – Display available options
 * **-p** – Target platforms: macos, ios, android, windows
@@ -23,5 +24,5 @@ apt-get install imagemagick
 ## Usage
 The following command generates icons for iOS and Windows from icon.png using Quadratic filter:
 ```sh
-./resize_icon.sh icon.png -p ios windows -f Quadratic
+./resize_icon.sh -i icon.png -p ios windows -f Quadratic
 ```
