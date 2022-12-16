@@ -18,6 +18,12 @@ function printHelp {
     exit
 }
 
+if ! command -v convert &> /dev/null
+then
+    echo "ImageMagick not installed"
+    exit
+fi
+
 if [ -n "$1" ]
 then
     CURRENT_ARG=0
