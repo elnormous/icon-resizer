@@ -1,5 +1,5 @@
 TARGET_MAC=true
-TARGET_IPHONE=true
+TARGET_IOS=true
 TARGET_ANDROID=true
 TARGET_WINDOWS=true
 
@@ -14,7 +14,7 @@ function printHelp {
     echo "OPTIONS:"
     echo "	-f <filter>			Filter to use for resizing (default: Cubic)"
     echo "	-h				Display available options"
-    echo "	-p <platforms>			Target platforms: mac, iphone, android, windows"
+    echo "	-p <platforms>			Target platforms: mac, ios, android, windows"
     exit
 }
 
@@ -35,7 +35,7 @@ then
             "-p")
                 CURRENT_ARG=1
                 TARGET_MAC=false
-                TARGET_IPHONE=false
+                TARGET_IOS=false
                 TARGET_ANDROID=false
                 TARGET_WINDOWS=false
                 ;;
@@ -52,8 +52,8 @@ then
                             "mac")
                                 TARGET_MAC=true
                                 ;;
-                            "iphone")
-                                TARGET_IPHONE=true
+                            "ios")
+                                TARGET_IOS=true
                                 ;;
                             "android")
                                 TARGET_ANDROID=true
@@ -85,7 +85,7 @@ if [ -z "$INPUT_FILE" ]; then
     exit 1
 fi
 
-if [ "$TARGET_MAC" = false ] && [ "$TARGET_IPHONE" = false ] && [ "$TARGET_ANDROID" = false ] && [ "$TARGET_WINDOWS" = false ]
+if [ "$TARGET_MAC" = false ] && [ "$TARGET_IOS" = false ] && [ "$TARGET_ANDROID" = false ] && [ "$TARGET_WINDOWS" = false ]
 then
     echo "No platforms provided"
     exit 1
@@ -113,38 +113,38 @@ then
     convert "$INPUT_FILE" -resize 1024x1024 -filter "$FILTER" mac/Icon-512@2x.png
 fi
 
-if [ "$TARGET_IPHONE" = true ]
+if [ "$TARGET_IOS" = true ]
 then
-    if [ ! -d "iphone" ]; then
-        mkdir "iphone"
+    if [ ! -d "ios" ]; then
+        mkdir "ios"
     fi
     
-    convert "$INPUT_FILE" -resize 29x29 -filter "$FILTER" iphone/Icon-29@1x.png
-    convert "$INPUT_FILE" -resize 58x58 -filter "$FILTER" iphone/Icon-29@2x.png
-    convert "$INPUT_FILE" -resize 87x87 -filter "$FILTER" iphone/Icon-29@3x.png
+    convert "$INPUT_FILE" -resize 29x29 -filter "$FILTER" ios/Icon-29@1x.png
+    convert "$INPUT_FILE" -resize 58x58 -filter "$FILTER" ios/Icon-29@2x.png
+    convert "$INPUT_FILE" -resize 87x87 -filter "$FILTER" ios/Icon-29@3x.png
 
-    convert "$INPUT_FILE" -resize 40x40 -filter "$FILTER" iphone/Icon-40@1x.png
-    convert "$INPUT_FILE" -resize 80x80 -filter "$FILTER" iphone/Icon-40@2x.png
-    convert "$INPUT_FILE" -resize 120x120 -filter "$FILTER" iphone/Icon-40@3x.png
+    convert "$INPUT_FILE" -resize 40x40 -filter "$FILTER" ios/Icon-40@1x.png
+    convert "$INPUT_FILE" -resize 80x80 -filter "$FILTER" ios/Icon-40@2x.png
+    convert "$INPUT_FILE" -resize 120x120 -filter "$FILTER" ios/Icon-40@3x.png
 
-    convert "$INPUT_FILE" -resize 50x50 -filter "$FILTER" iphone/Icon-50@1x.png
-    convert "$INPUT_FILE" -resize 100x100 -filter "$FILTER" iphone/Icon-50@2x.png
+    convert "$INPUT_FILE" -resize 50x50 -filter "$FILTER" ios/Icon-50@1x.png
+    convert "$INPUT_FILE" -resize 100x100 -filter "$FILTER" ios/Icon-50@2x.png
 
-    convert "$INPUT_FILE" -resize 57x57 -filter "$FILTER" iphone/Icon-57@1x.png
-    convert "$INPUT_FILE" -resize 114x114 -filter "$FILTER" iphone/Icon-57@2x.png
+    convert "$INPUT_FILE" -resize 57x57 -filter "$FILTER" ios/Icon-57@1x.png
+    convert "$INPUT_FILE" -resize 114x114 -filter "$FILTER" ios/Icon-57@2x.png
 
-    convert "$INPUT_FILE" -resize 120x120 -filter "$FILTER" iphone/Icon-60@2x.png
-    convert "$INPUT_FILE" -resize 180x180 -filter "$FILTER" iphone/Icon-60@3x.png
+    convert "$INPUT_FILE" -resize 120x120 -filter "$FILTER" ios/Icon-60@2x.png
+    convert "$INPUT_FILE" -resize 180x180 -filter "$FILTER" ios/Icon-60@3x.png
 
-    convert "$INPUT_FILE" -resize 72x72 -filter "$FILTER" iphone/Icon-72.png
-    convert "$INPUT_FILE" -resize 144x144 -filter "$FILTER" iphone/Icon-72@2x.png
+    convert "$INPUT_FILE" -resize 72x72 -filter "$FILTER" ios/Icon-72.png
+    convert "$INPUT_FILE" -resize 144x144 -filter "$FILTER" ios/Icon-72@2x.png
 
-    convert "$INPUT_FILE" -resize 76x76 -filter "$FILTER" iphone/Icon-76@1x.png
-    convert "$INPUT_FILE" -resize 152x152 -filter "$FILTER" iphone/Icon-76@2x.png
+    convert "$INPUT_FILE" -resize 76x76 -filter "$FILTER" ios/Icon-76@1x.png
+    convert "$INPUT_FILE" -resize 152x152 -filter "$FILTER" ios/Icon-76@2x.png
 
-    convert "$INPUT_FILE" -resize 167x167 -filter "$FILTER" iphone/Icon-83.5@2x.png
+    convert "$INPUT_FILE" -resize 167x167 -filter "$FILTER" ios/Icon-83.5@2x.png
 
-    convert "$INPUT_FILE" -resize 1024x1024 -filter "$FILTER" iphone/Icon-1024@1x.png
+    convert "$INPUT_FILE" -resize 1024x1024 -filter "$FILTER" ios/Icon-1024@1x.png
 fi
 
 if [ "$TARGET_ANDROID" = true ]

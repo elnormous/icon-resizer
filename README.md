@@ -1,5 +1,5 @@
 # Icon resizer
-Icon resizer automatically generates icons from a given image for Mac, iPhone, Android or Windows applications.
+Icon resizer automatically generates icons from a given image for Mac, iOS, Android or Windows applications.
 
 # Dependencies
 
